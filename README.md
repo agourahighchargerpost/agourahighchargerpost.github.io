@@ -9,7 +9,6 @@ The site looks and works like the WordPress version: same theme, same URLs for e
 
 ## How to add a new article
 
-You only need a web browser. Nothing to install, no code.
 
 ### The first time only: sign in
 
