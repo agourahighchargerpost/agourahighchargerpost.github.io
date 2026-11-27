@@ -1,0 +1,43 @@
+---
+layout: layouts/base.liquid
+---
+{%- comment -%} Listing pages: homepage page 2+, categories, tags, years, months. Expects `archive`. {%- endcomment -%}
+{%- if archive.kind == "home" %}{% assign showTicker = true %}{% else %}{% assign showTicker = false %}{% endif -%}
+{% include "partials/after-header.liquid", ticker: showTicker %}
+<div id="theme-content">
+    <main id="primary" class="site-main width-boxed--layout">
+        <div class="digital-newspaper-container">
+            <div class="row">
+                <div class="secondary-left-sidebar">
+                </div>
+                <div class="primary-content">
+                {%- if archive.kind == "home" %}
+                    <div class="news-list-wrap">
+                    {%- for p in archive.posts %}{% include "partials/card-list.liquid", p: p %}{% endfor -%}
+                    </div>{{ archive.n | pagination: archive.total, archive.base }}
+                {%- else %}
+                    {%- assign crumbs = "" -%}
+                    {%- if archive.kind == "month" %}{% capture crumbs %}{{ archive.year }}|/{{ archive.year }}/{% endcapture %}{% endif -%}
+                    {%- if archive.n > 1 -%}
+                        {%- if archive.kind == "month" %}{% assign pageLabel = archive.monthName %}{% else %}{% assign pageLabel = archive.label | escape %}{% endif -%}
+                        {%- if crumbs != "" %}{% assign crumbs = crumbs | append: ";" %}{% endif -%}
+                        {%- capture crumbs %}{{ crumbs }}{{ pageLabel }}|{{ archive.base }}{% endcapture -%}
+                    {%- endif -%}
+                    {%- capture last %}{% if archive.n > 1 %}Page {{ archive.n }}{% elsif archive.kind == "month" %}{{ archive.monthName }}{% else %}{{ archive.label | escape }}{% endif %}{% endcapture %}
+                    {% include "partials/breadcrumb.liquid", crumbs: crumbs, last: last, lastUrl: archive.base %}
+                    <header class="page-header">
+                        <h1 class="page-title digital-newspaper-block-title">{% case archive.kind %}{% when "category" %}Category{% when "tag" %}Tag{% when "year" %}Year{% when "month" %}Month{% endcase %}: <span>{{ archive.label | escape }}</span></h1>
+                    </header><!-- .page-header -->
+                    <div class="post-inner-wrapper news-list-wrap">
+                    {%- for p in archive.posts %}{% include "partials/card-list.liquid", p: p %}{% endfor -%}
+                    {{ archive.n | pagination: archive.total, archive.base }}
+                    </div>
+                {%- endif %}
+                </div>
+                <div class="secondary-sidebar">
+                    {% include "partials/sidebar.liquid" %}
+                </div>
+            </div>
+        </div> <!-- digital-newspaper-container end -->
+    </main><!-- #main -->
+</div><!-- #theme-content -->

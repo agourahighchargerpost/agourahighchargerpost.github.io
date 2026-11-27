@@ -1,0 +1,91 @@
+---
+layout: layouts/base.liquid
+bodyClass: archive tax-author hfeed post-layout--one right-sidebar
+---
+{%- assign mine = collections.posts | postsBy: page.fileSlug -%}
+{% include "partials/after-header.liquid", ticker: false %}
+<div class="ppma-author-pages site-main alignwide has-global-padding">
+    <div class="ppma-page-header">
+        <h1 class="ppma-page-title page-title">Author: <span>{{ name | escape }}</span></h1>
+        <div class="ppma-author-pages-author-box-wrap">
+            <div class="pp-multiple-authors-boxes-wrapper pp-multiple-authors-wrapper pp-multiple-authors-layout-boxed multiple-authors-target-shortcode box-instance-id-1">
+                <span class="ppma-layout-prefix"></span>
+                <div class="ppma-author-category-wrap">
+                    <span class="ppma-category-group ppma-category-group-1 category-index-4">
+                        <ul class="pp-multiple-authors-boxes-ul author-ul-4">
+                            <li class="pp-multiple-authors-boxes-li author_index_0 author_{{ page.fileSlug }}{% if photo %} has-avatar{% endif %}">
+                                {%- if photo %}
+                                <div class="pp-author-boxes-avatar">
+                                    <div class="avatar-image">
+                                        <img alt='' src='{{ photo }}' class='multiple_authors_guest_author_avatar avatar' height='80' width='80'/>
+                                    </div>
+                                </div>
+                                {%- endif %}
+                                <div class="pp-author-boxes-avatar-details">
+                                    <div class="pp-author-boxes-name multiple-authors-name"><a href="/author/{{ page.fileSlug }}/" rel="author" title="{{ name | escape }}" class="author url fn">{{ name | escape }}</a></div>
+                                    <p class="pp-author-boxes-description multiple-authors-description author-description-0">
+                                        {{ bio | escape | newline_to_br }}
+                                    </p>
+                                    <span class="pp-author-boxes-meta multiple-authors-links">
+                                        <a href="/author/{{ page.fileSlug }}/" title="View all posts"><span>View all posts</span></a>
+                                    </span>
+                                    {%- if email %}
+                                    <a class="ppma-author-user_email-profile-data ppma-author-field-meta ppma-author-field-type-email" aria-label="Email" href="mailto:{{ email }}" target="_self"><span class="dashicons dashicons-email-alt"></span> </a>
+                                    {%- endif %}
+                                    {%- if website %}
+                                    <a class="ppma-author-user_url-profile-data ppma-author-field-meta ppma-author-field-type-url" aria-label="Website" href="{{ website }}" target="_self"><span class="dashicons dashicons-admin-links"></span> </a>
+                                    {%- endif %}
+                                </div>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+                <span class="ppma-layout-suffix"></span>
+            </div>
+        </div>
+    </div><!-- .page-header -->
+    <div class="ppma-page-content list">
+    {%- for p in mine %}
+        <article id="post-{{ p.fileSlug }}" class="ppma-article{% if p.data.image %} has-featured-image{% endif %} {{ p | articleClasses }}">
+            <div class="article-content">
+                {%- if p.data.image %}
+                <div class="article-image">
+                    <img src="{{ p.data.image | thumb: 600 }}" alt="" style="">
+                </div>
+                {%- endif %}
+                <div class="article-body">
+                    <header class="article-header">
+                        <span class="category-link cat-links">
+                            {% for c in p.data.categories %}<a href="/category/{{ c | catSlug }}/" rel="category tag">{{ c | escape }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}
+                        </span>
+                        <h2 class="article-title entry-title title">
+                            <a href="{{ p.url }}" rel="bookmark" title="{{ p.data.title | escape }}">{{ p.data.title | escape }}</a>
+                        </h2>
+                        <div class="article-meta post-meta meta">
+                            <span class="article-meta-item">by <span class="author vcard"> <a href="/author/{{ page.fileSlug }}/" title="{{ name | escape }}"> {{ name | escape }} </a> </span></span>
+                            <span class="article-meta-item entry-meta-item post-meta-item post-meta meta">
+                                <span class="dashicons dashicons-clock"></span>
+                                <a href="{{ p.url }}" rel="bookmark" title="Published date"> <time class="article-date published" datetime="{{ p.date | isoDate }}">{{ p.date | longDate }}</time> </a>
+                            </span>
+                            <span class="article-meta-item entry-meta-item post-meta-item post-meta meta">
+                                <a href="{{ p.url }}#comments" title="Comment counts"> <span class="dashicons dashicons-admin-comments"></span>0 </a>
+                            </span>
+                        </div><!-- .article-meta -->
+                    </header><!-- .article-header -->
+                    <div class="article-entry-excerpt post-entry-excerpt entry-excerpt excerpt">
+                        {{ p.data.plainText | trimChars: 170 | escape }} <a class="read-more" href="{{ p.url }}" title="Read more.">Read more.</a>
+                    </div>
+                    <footer class="article-footer entry-footer post-footer">
+                        <span class="tags-links">
+                            {% for t in p.data.tags %}<a href="/tag/{{ t | tagSlug }}/" rel="tag" title="{{ t | escape }}"> {{ t | escape }} </a> {% endfor %}
+                        </span>
+                    </footer><!-- .entry-footer -->
+                </div>
+            </div>
+        </article>
+    {%- endfor %}
+        <div class="ppma-article-pagination">
+        </div>
+    </div> <!-- #main-content -->
+</div>
+{% include "partials/author-style.html" %}

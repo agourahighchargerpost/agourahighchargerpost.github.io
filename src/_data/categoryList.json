@@ -1,0 +1,7 @@
+[
+  { "name": "News", "slug": "news", "id": 8 },
+  { "name": "Feature", "slug": "feature", "id": 9 },
+  { "name": "Opinion", "slug": "opinion", "id": 10 },
+  { "name": "Sports", "slug": "sports", "id": 11 },
+  { "name": "Arts and Entertainment", "slug": "arts-and-entertainment", "id": 12 }
+]

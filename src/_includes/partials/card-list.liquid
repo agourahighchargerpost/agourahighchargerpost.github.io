@@ -1,0 +1,19 @@
+<article id="post-{{ p.fileSlug }}" class="{{ p | articleClasses }}">
+    <div class="blaze_box_wrap">
+    	<figure class="post-thumb-wrap {% unless p.data.image %}no-feat-img{% endunless %}">
+            <a href="{{ p.url }}" title="{{ p.data.title | escape }}">
+                {%- if p.data.image %}<img src="{{ p.data.image | thumb: 600, 400 }}" class="attachment-digital-newspaper-list size-digital-newspaper-list wp-post-image" alt="" title="{{ p.data.title | escape }}" decoding="async" loading="lazy" />{% endif -%}
+            </a>
+            {% include "partials/cats.liquid", p: p %}
+        </figure>
+        <div class="post-element">
+            <h2 class="post-title"><a href="{{ p.url }}" title="{{ p.data.title | escape }}">{{ p.data.title | escape }}</a></h2>
+            <div class="post-meta">
+                {% include "partials/byline.liquid", p: p %}{% include "partials/date.liquid", p: p %}<span class="post-comment">0</span><span class="read-time">{{ p.data.readMinutes }} mins</span>
+            </div>
+            <div class="post-excerpt"><p>{{ p.data.excerptText | escape }}</p>
+</div>
+            <a class="post-link-button" href="{{ p.url }}">Read More<i class="fas fa-caret-right"></i></a>
+        </div>
+    </div>
+</article>

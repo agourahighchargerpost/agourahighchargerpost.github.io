@@ -1,0 +1,120 @@
+---
+layout: layouts/base.liquid
+permalink: /
+isHome: true
+bodyClass: home blog hfeed post-layout--one right-sidebar
+eleventyExcludeFromCollections: true
+---
+{%- assign banner = collections.posts | slice: 0, 4 -%}
+{%- assign side = collections.posts | bySlugs: homepage.side_articles -%}
+{%- assign totalPages = collections.posts.size | divided_by: 10.0 | ceil -%}
+{% include "partials/after-header.liquid", ticker: true %}
+<section id="main-banner-section" class="digital-newspaper-section banner-layout--six grid_slider--banner_slider--list_posts width-boxed--layout">
+    <div class="digital-newspaper-container">
+        <div class="row">
+            <div class="main-banner-wrap">
+                <div class="main-banner-slider">
+                {%- for p in banner %}
+                    <article class="slide-item ">
+                        <figure class="post-thumb">
+                            <a href="{{ p.url }}" title="{{ p.data.title | escape }}">
+                                {%- if p.data.image %}<img src="{{ p.data.image | thumb: 1020, 700 }}" class="attachment-digital-newspaper-featured size-digital-newspaper-featured wp-post-image" alt="" title="{{ p.data.title | escape }}" decoding="async" />{% endif -%}
+                            </a>
+                        </figure>
+                        <div class="post-element">
+                            <div class="post-meta">
+                                {% include "partials/cats.liquid", p: p %}{% include "partials/date.liquid", p: p %}
+                            </div>
+                            <h2 class="post-title"><a href="{{ p.url }}" title="{{ p.data.title | escape }}">{{ p.data.title | escape }}</a></h2>
+                            <div class="post-excerpt"><p>{{ p.data.excerptText | escape }}</p>
+</div>
+                            <div class="main-banner-related-posts-section-wrap">
+                                <ul class="related-posts-wrap">
+                                {%- for other in banner %}{% if other.url != p.url %}
+                                    <li class="post-title"><a href="{{ other.url }}">{{ other.data.title | escape }}</a></li>
+                                {%- endif %}{% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+                {%- endfor %}
+                </div>
+            </div>
+
+            <div class="main-banner-trailing-posts layout--row">
+                <div class="trailing-posts-wrap">
+                {%- for p in side %}
+                    <article class="post-item {% unless p.data.image %}no-feat-img{% endunless %}">
+                        <figure class="post-thumb">
+                            <a href="{{ p.url }}">
+                                {%- if p.data.image %}<img src="{{ p.data.image | thumb: 600, 400 }}"/>{% endif -%}
+                            </a>
+                            <div class="post-element-wrap">
+                                <div class="post-element">
+                                    {% include "partials/cats.liquid", p: p %}<h2 class="post-title"><a href="{{ p.url }}">{{ p.data.title | escape }}</a></h2>
+                                </div>
+                                <div class="post-meta">
+                                    {% include "partials/byline.liquid", p: p %}{% include "partials/date.liquid", p: p %}
+                                </div>
+                            </div>
+                        </figure>
+                    </article>
+                {%- endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div id="theme-content">
+    <main id="primary" class="site-main width-boxed--layout">
+        <div class="digital-newspaper-container">
+            <div class="row">
+                <div class="secondary-left-sidebar">
+                </div>
+                <div class="primary-content">
+                    <div class="news-list-wrap">
+                    {%- for p in collections.posts limit: 10 %}{% include "partials/card-list.liquid", p: p %}{% endfor -%}
+                    </div>{{ 1 | pagination: totalPages, "/" }}
+                </div>
+                <div class="secondary-sidebar">
+                    {% include "partials/sidebar.liquid" %}
+                </div>
+            </div>
+        </div> <!-- digital-newspaper-container end -->
+    </main><!-- #main -->
+</div><!-- #theme-content -->
+<section id="bottom-full-width-section" class="digital-newspaper-section bottom-full-width-section width-boxed--layout">
+    <div class="digital-newspaper-container">
+        <div class="row">
+            <div class="news-carousel layout--two">
+                <h2 class="digital-newspaper-block-title">
+                    <span>You May Have Missed</span>
+                </h2>
+                <div class="news-carousel-post-wrap viewall_disabled" data-dots="1" data-loop="0" data-arrows="1" data-auto="0" data-columns="4">
+                {%- assign missed = collections.posts | shuffle | slice: 0, 8 %}
+                {%- for p in missed %}
+                    <article class="carousel-item {% unless p.data.image %}no-feat-img{% endunless %}">
+                        <div class="blaze_box_wrap">
+                            <figure class="post-thumb-wrap">
+                                <a href="{{ p.url }}" title="{{ p.data.title | escape }}">
+                                    {%- if p.data.image %}<img src="{{ p.data.image | thumb: 600, 400 }}" class="attachment-digital-newspaper-list size-digital-newspaper-list wp-post-image" alt="" title="{{ p.data.title | escape }}" decoding="async" loading="lazy" />{% endif %}
+                                    <div class="thumb-overlay"></div>
+                                </a>
+                                <div class="post-element">
+                                    {% include "partials/cats.liquid", p: p %}
+                                    <div class="post-element-inner">
+                                        <h2 class="post-title"><a href="{{ p.url }}" title="{{ p.data.title | escape }}">{{ p.data.title | escape }}</a></h2>
+                                        <div class="post-meta">
+                                            {% include "partials/byline.liquid", p: p %}{% include "partials/date.liquid", p: p %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </figure>
+                        </div>
+                    </article>
+                {%- endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

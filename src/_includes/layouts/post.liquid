@@ -1,0 +1,94 @@
+---
+layout: layouts/base.liquid
+bodyClass: wp-singular post-template-default single single-post single-format-standard right-sidebar
+---
+{%- assign current = collections.posts | where: "url", page.url | first -%}
+{%- assign w = author | writer -%}
+{%- assign firstCat = categories | primaryCategory -%}
+{%- assign nav = collections.posts | prevNext: page.url -%}
+{% include "partials/after-header.liquid", ticker: false %}
+<div id="theme-content">
+    <main id="primary" class="site-main width-boxed--layout">
+        <div class="digital-newspaper-container">
+            <div class="row">
+                <div class="secondary-left-sidebar">
+                </div>
+                <div class="primary-content">
+                    {%- capture catCrumb %}{% if firstCat %}{{ firstCat }}|/category/{{ firstCat | catSlug }}/{% endif %}{% endcapture %}
+                    {% include "partials/breadcrumb.liquid", crumbs: catCrumb, last: title, lastUrl: page.url %}
+                    <div class="post-inner-wrapper">
+                        <article itemtype='https://schema.org/Article' itemscope='itemscope' id="post-{{ page.fileSlug }}" class="{% if current %}{{ current | articleClasses }}{% endif %}">
+    <div class="post-inner">
+        <header class="entry-header">
+            <ul class="post-categories">
+            {%- for c in categories %}
+    <li><a href="/category/{{ c | catSlug }}/" rel="category tag">{{ c | escape }}</a></li>
+            {%- endfor %}</ul><h1 class="entry-title" itemprop='name'>{{ title | escape }}</h1>
+            <div class="entry-meta">
+                <span class="byline"> <span class="author vcard"><a class="url fn n author_name" href="{{ w.url }}">{{ w.name | escape }}</a></span></span><span class="post-date posted-on published"><a href="{{ page.url }}" rel="bookmark"><time class="entry-date published" datetime="{{ page.date | isoDate }}">{{ page.date | timeAgo }}</time><time class="updated" datetime="{{ page.date | isoDate }}">{{ page.date | timeAgo }}</time></a></span><span class="post-comment">0</span><span class="read-time">{{ readMinutes }} mins</span>
+            </div><!-- .entry-meta -->
+            {%- if image %}
+            <div class="post-thumbnail">
+                <img src="{{ image }}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="{{ image_alt | escape }}" decoding="async" fetchpriority="high" />
+            </div><!-- .post-thumbnail -->
+            {%- endif %}
+        </header><!-- .entry-header -->
+
+        <div itemprop='articleBody' class="entry-content">
+{{ content }}
+        </div><!-- .entry-content -->
+
+        <footer class="entry-footer">
+            {%- if tags.size > 0 %}
+            <span class="tags-links">Tagged: {% for t in tags %}<a href="/tag/{{ t | tagSlug }}/" rel="tag">{{ t | escape }}</a>{% unless forloop.last %} {% endunless %}{% endfor %}</span>
+            {%- endif %}
+        </footer><!-- .entry-footer -->
+
+    <nav class="navigation post-navigation" aria-label="Posts">
+        <h2 class="screen-reader-text">Post navigation</h2>
+        <div class="nav-links">
+            {%- if nav.previous %}<div class="nav-previous"><a href="{{ nav.previous.url }}" rel="prev"><span class="nav-subtitle"><i class="fas fa-angle-double-left"></i>Previous:</span> <span class="nav-title">{{ nav.previous.data.title | escape }}</span></a></div>{% endif -%}
+            {%- if nav.next %}<div class="nav-next"><a href="{{ nav.next.url }}" rel="next"><span class="nav-subtitle">Next:<i class="fas fa-angle-double-right"></i></span> <span class="nav-title">{{ nav.next.data.title | escape }}</span></a></div>{% endif -%}
+        </div>
+    </nav>
+    </div>
+</article>
+                        {%- if current %}{% assign related = collections.posts | related: current %}{% endif %}
+                        {%- if related.size > 0 %}
+                        <div class="single-related-posts-section-wrap layout--list">
+                            <div class="single-related-posts-section">
+                                <a href="javascript:void(0);" class="related_post_close">
+                                    <i class="fas fa-times-circle"></i>
+                                </a>
+                                <h2 class="digital-newspaper-block-title"><span>Related News</span></h2><div class="single-related-posts-wrap">
+                                {%- for p in related %}
+                                <article post-id="post-{{ p.fileSlug }}" class="{{ p | articleClasses }}">
+                                    {%- if p.data.image %}
+                                    <figure class="post-thumb-wrap ">
+                                        <div class="post-thumbnail">
+                                            <img src="{{ p.data.image | thumb: 600 }}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" decoding="async" loading="lazy" />
+                                        </div><!-- .post-thumbnail -->
+                                    </figure>
+                                    {%- endif %}
+                                    <div class="post-element">
+                                        <h2 class="post-title"><a href="{{ p.url }}">{{ p.data.title | escape }}</a></h2>
+                                        <div class="post-meta">
+                                            {% include "partials/byline.liquid", p: p %}{% include "partials/date.liquid", p: p %}
+                                            <span class="post-comment">0</span>
+                                        </div>
+                                    </div>
+                                </article>
+                                {%- endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {%- endif %}
+                    </div>
+                </div>
+                <div class="secondary-sidebar">
+                    {% include "partials/sidebar.liquid" %}
+                </div>
+            </div>
+        </div>
+    </main><!-- #main -->
+</div><!-- #theme-content -->

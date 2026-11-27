@@ -1,0 +1,16 @@
+{% include "partials/prelude.html" %}<head>
+<title>{% if fullTitle %}{{ fullTitle | escape }}{% elsif pageTitle %}{{ pageTitle | escape }} &#8211; {{ site.title }}{% elsif title %}{{ title | escape }} &#8211; {{ site.title }}{% elsif name %}{{ name | escape }} &#8211; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+{% include "partials/head.html" %}
+<link rel="stylesheet" id="editor-content-css" href="/assets/editor-content.css" media="all" />
+{%- if page.url %}
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{%- endif %}
+</head>
+
+<body class="{{ bodyClass }} {{ site.bodySuffix }}" itemtype='https://schema.org/Blog' itemscope='itemscope'>
+{% if isHome %}{% include "partials/masthead-home.html" %}{% else %}{% include "partials/masthead.html" %}{% endif %}
+{{ content }}
+{% include "partials/footer.html" %}
+<script src="/assets/static-site.js" defer></script>
+</body>
+</html>

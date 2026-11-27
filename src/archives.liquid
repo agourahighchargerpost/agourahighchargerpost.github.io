@@ -1,0 +1,13 @@
+---
+pagination:
+  data: collections.archivePages
+  size: 1
+  alias: archive
+  addAllPagesToCollections: false
+permalink: "{{ archive.url }}"
+layout: layouts/list.liquid
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  bodyClass: "{% case archive.kind %}{% when 'home' %}home blog{% when 'category' %}archive category category-{{ archive.slug }} category-{{ archive.id }}{% when 'tag' %}archive tag tag-{{ archive.slug }}{% else %}archive date{% endcase %}{% if archive.n > 1 %} paged paged-{{ archive.n }}{% endif %} hfeed post-layout--one right-sidebar"
+  fullTitle: "{% if archive.kind == 'home' %}{{ site.title }} – Page {{ archive.n }}{% else %}{{ archive.label }}{% if archive.n > 1 %} – Page {{ archive.n }}{% endif %} – {{ site.title }}{% endif %}"
+---

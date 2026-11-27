@@ -1,0 +1,26 @@
+---
+layout: layouts/base.liquid
+permalink: /search/
+fullTitle: Search – Agoura High Charger Post
+bodyClass: search search-page hfeed post-layout--one right-sidebar
+eleventyExcludeFromCollections: true
+---
+{% include "partials/after-header.liquid", ticker: false %}
+<div id="theme-content">
+    <main id="primary" class="site-main width-boxed--layout">
+        <div class="digital-newspaper-container">
+            <div class="row">
+                <div class="secondary-left-sidebar">
+                </div>
+                <div class="primary-content">
+                    {% include "partials/breadcrumb.liquid", crumbs: "", last: "Search", lastUrl: "/search/" %}
+                    <header class="page-header"><h1 class="page-title digital-newspaper-block-title" id="search-title">Search</h1></header>
+                    <div class="post-inner-wrapper news-list-wrap" id="search-results"></div>
+                </div>
+                <div class="secondary-sidebar">
+                    {% include "partials/sidebar.liquid" %}
+                </div>
+            </div>
+        </div>
+    </main><!-- #main -->
+</div><!-- #theme-content -->

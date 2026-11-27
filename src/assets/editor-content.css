@@ -1,0 +1,26 @@
+/* Styles for article content written in the new editor (WordPress added its own classes; the editor writes plain HTML). */
+.entry-content figure:not([class]) {
+  margin: 0 0 1em;
+}
+.entry-content figure:not([class]) img,
+.entry-content > p img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.entry-content figure:not([class]) figcaption {
+  margin: 0.5em 0 1em;
+  font-size: 13px;
+  text-align: center;
+  color: #555;
+}
+.entry-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+.entry-content table th,
+.entry-content table td {
+  border: 1px solid #ddd;
+  padding: 6px 10px;
+}

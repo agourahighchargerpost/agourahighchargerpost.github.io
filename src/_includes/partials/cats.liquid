@@ -1,0 +1,1 @@
+<ul class="post-categories">{% for c in p.data.categories %}<li class="cat-item cat-{{ c | catId }}"><a href="/category/{{ c | catSlug }}/" rel="category tag">{{ c | escape }}</a></li>{% endfor %}</ul>

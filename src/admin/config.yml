@@ -1,0 +1,193 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+#
+# Settings for the article editor at /admin/ (Sveltia CMS).
+# Docs: https://sveltiacms.app/docs
+
+backend:
+  name: github
+  repo: agourahighchargerpost/charge-post-website
+  branch: main
+  # Editors sign in with a GitHub access token (see EDITOR-GUIDE.md).
+  # To get a one-click "Sign In with GitHub" button instead, deploy Sveltia CMS
+  # Authenticator (https://github.com/sveltia/sveltia-cms-auth), add its URL as
+  # `base_url:` here, and add `oauth` to this list.
+  auth_methods: [token]
+  commit_messages:
+    create: "New article: {{slug}}"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "Upload “{{path}}”"
+    deleteMedia: "Delete “{{path}}”"
+
+site_url: https://www.agourahighchargerpost.com
+display_url: https://www.agourahighchargerpost.com
+logo:
+  src: /wp-content/uploads/2024/11/cropped-image-2-192x192.png
+
+# Uploaded photos are saved here and shrunk automatically so pages stay fast.
+media_folder: src/images/uploads
+public_folder: /images/uploads
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 2000
+          height: 2000
+
+collections:
+  - name: articles
+    label: Articles
+    label_singular: Article
+    description: Every article on the site. Click “New Article” to publish one.
+    icon: article
+    folder: src/articles
+    extension: html
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    identifier_field: title
+    preview_path: "/{{slug}}/"
+    summary: "{{title}}{{draft | ternary(' (draft)', '')}}"
+    thumbnail: image
+    sortable_fields:
+      fields: [date, title]
+      default:
+        field: date
+        direction: descending
+    fields:
+      - name: title
+        label: Headline
+        widget: string
+
+      - name: date
+        label: Publish date
+        widget: datetime
+        default: "{{now}}"
+        # Editors pick their local time; it is saved as UTC so "X hours ago" is always right.
+        output_utc: true
+        hint: Articles are listed newest first by this date.
+
+      - name: author
+        label: Writer
+        widget: relation
+        collection: writers
+        search_fields: [name]
+        display_fields: [name]
+        hint: Not in the list? Add them under Writers first, or click “Create new” here.
+
+      - name: categories
+        label: Sections
+        widget: select
+        multiple: true
+        min: 1
+        options:
+          - News
+          - Feature
+          - Opinion
+          - Sports
+          - Arts and Entertainment
+
+      - name: tags
+        label: Tags
+        widget: list
+        required: false
+        hint: Optional keywords, such as the writer's first name or the topic. Each tag gets its own page.
+
+      - name: image
+        label: Featured photo
+        widget: image
+        required: false
+        hint: Shown at the top of the article and in article lists. Large photos are shrunk automatically.
+
+      - name: image_alt
+        label: Featured photo description
+        widget: string
+        required: false
+        hint: A short description of the photo for readers using screen readers.
+
+      - name: body
+        label: Article
+        widget: richtext
+        format: html
+        buttons:
+          - bold
+          - italic
+          - underline
+          - strikethrough
+          - link
+          - heading-two
+          - heading-three
+          - heading-four
+          - bulleted-list
+          - numbered-list
+          - quote
+          - align
+        editor_components: [image, hr, table]
+        hint: Paste the article from Google Docs. Add photos with the image button (not by pasting them).
+
+      - name: summary
+        label: Summary
+        widget: text
+        required: false
+        hint: Optional. Shown in article lists. Leave blank to use the first 55 words of the article.
+
+      - name: draft
+        label: Draft (hide from the website)
+        widget: boolean
+        default: false
+        required: false
+        hint: Turn this on to save your work without publishing it.
+
+  - name: writers
+    label: Writers
+    label_singular: Writer
+    description: Staff profiles. Each writer has a page listing their articles.
+    icon: group
+    folder: src/writers
+    extension: md
+    format: frontmatter
+    create: true
+    delete: true
+    slug: "{{name}}"
+    identifier_field: name
+    preview_path: "/author/{{slug}}/"
+    thumbnail: photo
+    sortable_fields:
+      fields: [name]
+      default:
+        field: name
+        direction: ascending
+    fields:
+      - { name: name, label: Name, widget: string }
+      - { name: photo, label: Photo, widget: image, required: false }
+      - { name: email, label: Email, widget: string, required: false }
+      - name: bio
+        label: Bio
+        widget: text
+        required: false
+      - { name: website, label: Website, widget: string, required: false }
+
+  - name: settings
+    label: Site settings
+    icon: settings
+    files:
+      - name: homepage
+        label: Homepage
+        file: src/_data/homepage.json
+        format: json
+        fields:
+          - name: side_articles
+            label: Articles shown beside the banner
+            widget: relation
+            collection: articles
+            multiple: true
+            min: 0
+            max: 2
+            search_fields: [title]
+            display_fields: [title]
+            hint: The two smaller stories to the right of the big rotating banner. The banner itself always shows the 4 newest articles.

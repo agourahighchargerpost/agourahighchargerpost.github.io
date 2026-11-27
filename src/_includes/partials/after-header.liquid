@@ -1,0 +1,33 @@
+<div class="after-header header-layout-banner-two ticker-news-section--boxed--layout">
+    <div class="digital-newspaper-container">
+        <div class="row">
+{%- if ticker %}
+            <div class="ticker-news-wrap digital-newspaper-ticker layout--three">
+                <div class="ticker_label_title ticker-title digital-newspaper-ticker-label">
+                    <span class="icon"><i class="fas fa-bolt"></i></span>
+                    <span class="ticker_label_title_string">Headlines!!</span>
+                </div>
+                <div class="digital-newspaper-ticker-box">
+                    <ul class="ticker-item-wrap" direction="left" dir="ltr">
+                    {%- for p in collections.posts limit: 6 %}
+                        <li class="ticker-item">
+                            <figure class="feature_image">
+                                {%- if p.data.image %}
+                                <a href="{{ p.url }}" title="{{ p.data.title | escape }}"><img src="{{ p.data.image | thumb: 300, 200 }}" class="attachment-digital-newspaper-thumb size-digital-newspaper-thumb wp-post-image" alt="" title="{{ p.data.title | escape }}" decoding="async" /></a>
+                                {%- endif %}
+                            </figure>
+                            <div class="title-wrap">
+                                {% include "partials/date.liquid", p: p %}<h2 class="post-title"><a href="{{ p.url }}" title="{{ p.data.title | escape }}">{{ p.data.title | escape }}</a></h2>
+                            </div>
+                        </li>
+                    {%- endfor %}
+                    </ul>
+                </div>
+                <div class="digital-newspaper-ticker-controls">
+                    <button class="digital-newspaper-ticker-pause"><i class="fas fa-pause"></i></button>
+                </div>
+            </div>
+{%- endif %}
+        </div>
+    </div>
+</div>
