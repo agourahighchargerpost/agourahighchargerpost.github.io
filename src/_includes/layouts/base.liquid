@@ -1,7 +1,10 @@
 {% include "partials/prelude.html" %}<head>
 <title>{% if fullTitle %}{{ fullTitle | escape }}{% elsif pageTitle %}{{ pageTitle | escape }} &#8211; {{ site.title }}{% elsif title %}{{ title | escape }} &#8211; {{ site.title }}{% elsif name %}{{ name | replace: "'", "’" | escape }} &#8211; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-{% include "partials/head.html" %}
+{%- comment %} WordPress loaded different stylesheets per kind of page; articles get the combined set so old and new articles keep their look. {% endcomment -%}
+{% if headStyle == "list" %}{% include "partials/head-list.html" %}{% elsif headStyle == "author" %}{% include "partials/head-author.html" %}{% else %}{% include "partials/head.html" %}{% endif %}
+{%- unless headStyle %}
 <link rel="stylesheet" id="editor-content-css" href="/assets/editor-content.css" media="all" />
+{%- endunless %}
 {%- if page.url %}
 <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
 {%- endif %}
