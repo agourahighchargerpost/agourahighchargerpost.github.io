@@ -7,6 +7,51 @@ The website for the Agoura High Charger Post, moved from WordPress (DreamHost) t
 
 The site looks and works like the WordPress version: same theme, same URLs for every article, section, tag, writer and monthly archive, plus the homepage ticker, banner, sidebar, and search.
 
+## How to add a new article
+
+You only need a web browser. Nothing to install, no code.
+
+### The first time only: sign in
+
+1. Make a free GitHub account at https://github.com/signup (skip this if you have one).
+2. Send your GitHub username to the site owner and ask them to add you. GitHub then emails you an invitation. Open it and click **Accept invitation**.
+3. While signed in to GitHub, open this link:
+   **https://github.com/settings/tokens/new?scopes=public_repo&description=Charger%20Post%20editor**
+4. Under **Expiration**, choose **No expiration** (or the end of the school year).
+5. Scroll to the bottom and click the green **Generate token** button.
+6. Copy the long code that starts with `ghp_`. Treat it like a password.
+7. Go to the editor at **https://www.agourahighchargerpost.com/admin/**
+   (before the domain switch, use https://agourahighchargerpost.github.io/admin/).
+8. Click **Sign In Using Access Token**, paste the code, and click **Sign In**.
+
+Your browser remembers you. You only do this again on a new computer or browser.
+
+### Every article
+
+1. Open the editor: **https://www.agourahighchargerpost.com/admin/**
+2. Click **Articles** on the left, then **New Article** at the top.
+3. **Headline:** type the article's title.
+4. **Writer:** start typing the writer's name and click it.
+   *Not in the list?* Click **Create new**, type their name, and save.
+5. **Co-writers:** only if someone else helped write it.
+6. **Sections:** pick one or more (News, Feature, Opinion, Sports, Arts and Entertainment).
+7. **Tags:** optional. Type a word and press Enter for each one.
+8. **Featured photo:** click it and choose the main photo from your computer.
+9. **Article:** copy the text from the Google Doc and paste it here.
+   - Copy everything **except** the headline and the writer's name.
+   - Bold, italics, headings, links and lists stay as they are.
+   - If photos came along with the paste, delete them. Then put your cursor where each photo goes, click the **image** button in the toolbar, and upload it. You can add a caption there.
+10. Click **Save** at the top.
+
+**Done.** The article appears on the website in about 1 to 2 minutes, on the homepage, in its sections, and on the writer's page.
+
+### Good to know
+
+- **Not ready yet?** Turn on **Draft (hide from the website)** before saving. Turn it off and save again to publish.
+- **Fix a mistake:** click **Articles**, click the article, change it, and click **Save**.
+- **Didn't show up after 5 minutes?** Ask the site owner to check the **Actions** tab on GitHub.
+- More details are in **[EDITOR-GUIDE.md](EDITOR-GUIDE.md)**.
+
 ## What's where
 
 | Path | What it is |
