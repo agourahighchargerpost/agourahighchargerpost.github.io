@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: agourahighchargerpost/charge-post-website
+  repo: agourahighchargerpost/agourahighchargerpost.github.io
   branch: main
   # Editors sign in with a GitHub access token (see EDITOR-GUIDE.md).
   # To get a one-click "Sign In with GitHub" button instead, deploy Sveltia CMS

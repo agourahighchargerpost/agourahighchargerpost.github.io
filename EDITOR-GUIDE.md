@@ -9,7 +9,7 @@ Nothing to install; it works in any browser.
 ## One-time setup (each editor)
 
 You need a GitHub account with access to the newspaper's site repository,
-[agourahighchargerpost/charge-post-website](https://github.com/agourahighchargerpost/charge-post-website).
+[agourahighchargerpost/agourahighchargerpost.github.io](https://github.com/agourahighchargerpost/agourahighchargerpost.github.io).
 
 1. **Create a GitHub account** at https://github.com/signup if you don't have one.
 2. **Get added to the newspaper:** ask the site owner to add your GitHub username (see *Adding a new editor* below), then accept the invitation GitHub emails you.
@@ -78,14 +78,14 @@ The homepage, section pages, tag pages, monthly archives, "Recent Posts", search
 ## If something goes wrong
 
 - **The site didn't update after a few minutes:** open the site's repository on GitHub and click the **Actions** tab. A red ✗ next to your change means the update failed. Click it to see why, or ask the site owner.
-- **"Not Found" or permission error when signing in:** you may not have accepted the invitation to the repository yet (check your email or https://github.com/agourahighchargerpost/charge-post-website/invitations), or the token is missing the *public_repo* box or has expired. Make a new one (one-time setup, step 3).
+- **"Not Found" or permission error when signing in:** you may not have accepted the invitation to the repository yet (check your email or https://github.com/agourahighchargerpost/agourahighchargerpost.github.io/invitations), or the token is missing the *public_repo* box or has expired. Make a new one (one-time setup, step 3).
 - **Undo a mistake:** every save is recorded on GitHub. The site owner can restore any earlier version of any article from the repository's history.
 
 ---
 
 ## For the site owner: adding a new editor
 
-1. Sign in to GitHub as **agourahighchargerpost**, open the [site repository](https://github.com/agourahighchargerpost/charge-post-website) → **Settings → Collaborators** → **Add people**, and enter their GitHub username.
+1. Sign in to GitHub as **agourahighchargerpost**, open the [site repository](https://github.com/agourahighchargerpost/agourahighchargerpost.github.io) → **Settings → Collaborators** → **Add people**, and enter their GitHub username.
 2. Send them this guide. They need to accept the emailed invitation before they can sign in.
 
 When an editor leaves the paper, remove them from **Settings → Collaborators**. Their access ends immediately.

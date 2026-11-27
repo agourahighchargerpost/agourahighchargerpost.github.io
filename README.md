@@ -24,25 +24,19 @@ The site looks and works like the WordPress version: same theme, same URLs for e
 
 ## Going live (one time)
 
-The site lives in the repository **[agourahighchargerpost/charge-post-website](https://github.com/agourahighchargerpost/charge-post-website)**, owned by the newspaper's own GitHub account (`agourahighchargerpost`), so it doesn't belong to one student and can be handed down each year.
+The site lives in the repository **[agourahighchargerpost/agourahighchargerpost.github.io](https://github.com/agourahighchargerpost/agourahighchargerpost.github.io)**, owned by the newspaper's own GitHub account (`agourahighchargerpost`), so it doesn't belong to one student and can be handed down each year. Because the repository is named `<account>.github.io`, GitHub serves it at the top of **https://agourahighchargerpost.github.io/**, which is handy for testing before the real domain is switched over.
 
-1. **Push this folder** to the repository's `main` branch. This replaces the files that were uploaded there by hand:
+Already done: the code is pushed, and **Settings → Pages → Source** is set to **GitHub Actions**. To finish:
 
-   ```bash
-   git init -b main
-   git add .
-   git commit -m "Charger Post site"
-   git remote add origin https://github.com/agourahighchargerpost/charge-post-website.git
-   git push --force -u origin main
-   ```
-
-2. **Turn on Pages:** repository → **Settings → Pages** → **Source: GitHub Actions**. The first build starts on the next push (or run it from the **Actions** tab → *Publish site* → *Run workflow*).
-3. **Custom domain:** **Settings → Pages → Custom domain**: `www.agourahighchargerpost.com`. With GitHub Actions publishing, this setting is what counts (the `CNAME` file is just a reminder).
-4. **DNS** (in DreamHost's DNS panel, or wherever the domain's DNS is managed):
+1. **Test** everything at https://agourahighchargerpost.github.io/, including publishing a test article at `/admin/`.
+2. **Custom domain:** **Settings → Pages → Custom domain**: `www.agourahighchargerpost.com`. With GitHub Actions publishing, this setting is what counts (the `CNAME` file is just a reminder). From then on the github.io address redirects to the real domain.
+3. **DNS** (in DreamHost's DNS panel). Replace the two `A` records that point to DreamHost (`69.163.140.209`) with:
    - `www`: `CNAME` to `agourahighchargerpost.github.io`
    - `agourahighchargerpost.com` (no `www`): `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-5. When GitHub shows the domain as verified, tick **Enforce HTTPS**.
-6. Add editors as described at the end of [EDITOR-GUIDE.md](EDITOR-GUIDE.md).
+
+   To switch back, restore the two `A` records to `69.163.140.209`. The records refresh every 60 seconds, so either change shows up within minutes.
+4. When GitHub shows the domain as verified, tick **Enforce HTTPS**.
+5. Add editors as described at the end of [EDITOR-GUIDE.md](EDITOR-GUIDE.md).
 
 Before cancelling DreamHost, publish any articles still on WordPress here first. Also download a backup of the WordPress site from DreamHost.
 
