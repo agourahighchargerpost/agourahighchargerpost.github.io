@@ -8,6 +8,6 @@ permalink: "{{ archive.url }}"
 layout: layouts/list.liquid
 eleventyExcludeFromCollections: true
 eleventyComputed:
-  bodyClass: "{% case archive.kind %}{% when 'home' %}home blog{% when 'category' %}archive category category-{{ archive.slug }} category-{{ archive.id }}{% when 'tag' %}archive tag tag-{{ archive.slug }}{% else %}archive date{% endcase %}{% if archive.n > 1 %} paged paged-{{ archive.n }}{% endif %} hfeed post-layout--one right-sidebar"
+  bodyClass: "{% case archive.kind %}{% when 'home' %}home blog{% when 'category' %}archive category category-{{ archive.slug }} category-{{ archive.id }}{% when 'tag' %}archive tag tag-{{ archive.slug }}{% else %}archive date{% endcase %}{% if archive.n > 1 %} paged paged-{{ archive.n }}{% case archive.kind %}{% when 'category' %} category-paged-{{ archive.n }}{% when 'tag' %} tag-paged-{{ archive.n }}{% when 'home' %}{% else %} date-paged-{{ archive.n }}{% endcase %}{% endif %} hfeed post-layout--one right-sidebar"
   fullTitle: "{% if archive.kind == 'home' %}{{ site.title }} – Page {{ archive.n }}{% else %}{{ archive.label }}{% if archive.n > 1 %} – Page {{ archive.n }}{% endif %} – {{ site.title }}{% endif %}"
 ---

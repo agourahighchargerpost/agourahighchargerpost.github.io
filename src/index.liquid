@@ -6,7 +6,10 @@ bodyClass: home blog hfeed post-layout--one right-sidebar
 eleventyExcludeFromCollections: true
 ---
 {%- assign banner = collections.posts | slice: 0, 4 -%}
+{%- comment -%} Side stories: the ones picked in the editor, or (like WordPress) two random articles on every visit. {%- endcomment -%}
 {%- assign side = collections.posts | bySlugs: homepage.side_articles -%}
+{%- assign randomSide = false -%}
+{%- if side.size == 0 -%}{%- assign randomSide = true -%}{%- assign side = collections.posts | shuffle | slice: 0, 2 -%}{%- endif -%}
 {%- assign totalPages = collections.posts.size | divided_by: 10.0 | ceil -%}
 {% include "partials/after-header.liquid", ticker: true %}
 <section id="main-banner-section" class="digital-newspaper-section banner-layout--six grid_slider--banner_slider--list_posts width-boxed--layout">
@@ -60,6 +63,27 @@ eleventyExcludeFromCollections: true
                         </figure>
                     </article>
                 {%- endfor %}
+                {%- if randomSide %}
+                <template id="side-pool">
+                {%- for p in collections.posts %}
+                    <article class="post-item {% unless p.data.image %}no-feat-img{% endunless %}">
+                        <figure class="post-thumb">
+                            <a href="{{ p.url }}">
+                                {%- if p.data.image %}<img src="{{ p.data.image | thumb: 600, 400 }}"/>{% endif -%}
+                            </a>
+                            <div class="post-element-wrap">
+                                <div class="post-element">
+                                    {% include "partials/cats.liquid", p: p %}<h2 class="post-title"><a href="{{ p.url }}">{{ p.data.title | escape }}</a></h2>
+                                </div>
+                                <div class="post-meta">
+                                    {% include "partials/byline.liquid", p: p %}{% include "partials/date.liquid", p: p %}
+                                </div>
+                            </div>
+                        </figure>
+                    </article>
+                {%- endfor %}
+                </template>
+                {%- endif %}
                 </div>
             </div>
         </div>

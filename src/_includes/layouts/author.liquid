@@ -24,7 +24,7 @@ bodyClass: archive tax-author hfeed post-layout--one right-sidebar
                                 <div class="pp-author-boxes-avatar-details">
                                     <div class="pp-author-boxes-name multiple-authors-name"><a href="/author/{{ page.fileSlug }}/" rel="author" title="{{ name | escape }}" class="author url fn">{{ name | escape }}</a></div>
                                     <p class="pp-author-boxes-description multiple-authors-description author-description-0">
-                                        {{ bio | escape | newline_to_br }}
+                                        {{ bio | newline_to_br }}
                                     </p>
                                     <span class="pp-author-boxes-meta multiple-authors-links">
                                         <a href="/author/{{ page.fileSlug }}/" title="View all posts"><span>View all posts</span></a>
@@ -46,13 +46,12 @@ bodyClass: archive tax-author hfeed post-layout--one right-sidebar
     </div><!-- .page-header -->
     <div class="ppma-page-content list">
     {%- for p in mine %}
-        <article id="post-{{ p.fileSlug }}" class="ppma-article{% if p.data.image %} has-featured-image{% endif %} {{ p | articleClasses }}">
+        <article id="post-{{ p.fileSlug }}" class="ppma-article has-featured-image {{ p | articleClasses }}">
             <div class="article-content">
-                {%- if p.data.image %}
+                {%- comment %} WordPress kept the (empty) image box for articles without a photo. {% endcomment %}
                 <div class="article-image">
-                    <img src="{{ p.data.image | thumb: 600 }}" alt="" style="">
+                    <img src="{% if p.data.image %}{{ p.data.image | thumb: 600 }}{% endif %}" alt="" style="">
                 </div>
-                {%- endif %}
                 <div class="article-body">
                     <header class="article-header">
                         <span class="category-link cat-links">
@@ -62,7 +61,7 @@ bodyClass: archive tax-author hfeed post-layout--one right-sidebar
                             <a href="{{ p.url }}" rel="bookmark" title="{{ p.data.title | escape }}">{{ p.data.title | escape }}</a>
                         </h2>
                         <div class="article-meta post-meta meta">
-                            <span class="article-meta-item">by <span class="author vcard"> <a href="/author/{{ page.fileSlug }}/" title="{{ name | escape }}"> {{ name | escape }} </a> </span></span>
+                            <span class="article-meta-item">by <span class="author vcard">{% assign byline = p.data.coauthors %}{% assign w = p.data.author | writer %} <a href="{{ w.url }}" title="{{ w.name | escape }}"> {{ w.name | escape }}{% if byline.size > 0 %},{% endif %} </a>{% for c in byline %}{% assign w = c | writer %} <a href="{{ w.url }}" title="{{ w.name | escape }}"> {{ w.name | escape }}{% unless forloop.last %},{% endunless %} </a>{% endfor %} </span></span>
                             <span class="article-meta-item entry-meta-item post-meta-item post-meta meta">
                                 <span class="dashicons dashicons-clock"></span>
                                 <a href="{{ p.url }}" rel="bookmark" title="Published date"> <time class="article-date published" datetime="{{ p.date | isoDate }}">{{ p.date | longDate }}</time> </a>
@@ -73,7 +72,7 @@ bodyClass: archive tax-author hfeed post-layout--one right-sidebar
                         </div><!-- .article-meta -->
                     </header><!-- .article-header -->
                     <div class="article-entry-excerpt post-entry-excerpt entry-excerpt excerpt">
-                        {{ p.data.plainText | trimChars: 170 | escape }} <a class="read-more" href="{{ p.url }}" title="Read more.">Read more.</a>
+                        {% assign legacy = legacyAuthorExcerpts[p.fileSlug] %}{% if legacy %}{{ legacy | escape }}{% else %}{{ p.data.plainText | trimChars: 170 | escape }}{% endif %} <a class="read-more" href="{{ p.url }}" title="Read more.">Read more.</a>
                     </div>
                     <footer class="article-footer entry-footer post-footer">
                         <span class="tags-links">
@@ -84,6 +83,9 @@ bodyClass: archive tax-author hfeed post-layout--one right-sidebar
             </div>
         </article>
     {%- endfor %}
+    {%- if mine.size == 0 %}
+        <h2>Post not found for the author</h2>
+    {%- endif %}
         <div class="ppma-article-pagination">
         </div>
     </div> <!-- #main-content -->

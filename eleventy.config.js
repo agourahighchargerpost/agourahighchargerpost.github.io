@@ -10,10 +10,42 @@ const MONTHS = ["January", "February", "March", "April", "May", "June", "July",
 const readJSON = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
 const categories = readJSON("src/_data/categoryList.json");
 const tagSlugs = readJSON("src/_data/tagSlugs.json");
+// WordPress listed articles published in the same minute in an arbitrary order that
+// differs from page to page. This file records that order for the imported articles.
+const legacyOrder = readJSON("src/_data/legacyOrder.json");
 
 const pad = (n) => String(n).padStart(2, "0");
 const tagSlug = (name) => tagSlugs[name] || wpSlug(name);
 const catInfo = (name) => categories.find((c) => c.name === name) || { name, slug: wpSlug(name), id: 0 };
+
+/**
+ * Re-sort a newest-first list so that articles published in the same minute follow
+ * `preferred` (a list of slugs). Articles in different minutes keep date order.
+ */
+function tieSort(list, preferred) {
+  if (!preferred || !preferred.length) return list;
+  const rank = new Map(preferred.map((s, i) => [s, i]));
+  const minute = (p) => Math.floor(p.date.getTime() / 60000);
+  return list
+    .map((p, i) => ({ p, i }))
+    .sort((a, b) => minute(b.p) - minute(a.p)
+      || (rank.get(a.p.fileSlug) ?? Infinity) - (rank.get(b.p.fileSlug) ?? Infinity)
+      || a.i - b.i)
+    .map((x) => x.p);
+}
+
+function humanTimeDiff(from, to) {
+  const diff = Math.abs(to - from) / 1000;
+  const units = [[60, 1, "second", "seconds"], [3600, 60, "min", "mins"], [86400, 3600, "hour", "hours"],
+    [604800, 86400, "day", "days"], [2592000, 604800, "week", "weeks"], [31536000, 2592000, "month", "months"],
+    [Infinity, 31536000, "year", "years"]];
+  for (const [limit, size, one, many] of units) {
+    if (diff < limit) {
+      const n = Math.max(1, Math.round(diff / size));
+      return `${n} ${n === 1 ? one : many}`;
+    }
+  }
+}
 
 /** Newest first; drafts left out. */
 function sortedPosts(api) {
@@ -107,7 +139,7 @@ export default function (eleventyConfig) {
       }, p);
     }
     for (const map of [byCat, byTag, byYear, byMonth]) {
-      for (const { info, list } of map.values()) add(info, list);
+      for (const { info, list } of map.values()) add(info, tieSort(list, legacyOrder.listings[info.base]));
     }
     return pages;
   });
@@ -117,7 +149,10 @@ export default function (eleventyConfig) {
     const w = writers.get(slug);
     return w ? { slug, name: w.data.name, url: `/author/${slug}/` } : { slug, name: slug, url: `/author/${slug}/` };
   });
-  eleventyConfig.addFilter("postsBy", (posts, slug) => posts.filter((p) => p.data.author === slug));
+  // Articles by a writer, including ones where they are listed as a co-writer.
+  eleventyConfig.addFilter("postsBy", (posts, slug) => tieSort(
+    posts.filter((p) => p.data.author === slug || (p.data.coauthors || []).includes(slug)),
+    legacyOrder.listings[`/author/${slug}/`]));
   eleventyConfig.addFilter("bySlugs", (posts, slugs) =>
     (slugs || []).map((s) => posts.find((p) => p.fileSlug === s)).filter(Boolean));
   // WordPress used the category with the lowest ID in breadcrumbs.
@@ -133,14 +168,8 @@ export default function (eleventyConfig) {
     return `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
   });
   // Replaced in the browser by assets/static-site.js so it never goes stale.
-  eleventyConfig.addFilter("timeAgo", (d) => {
-    const s = (Date.now() - new Date(d).getTime()) / 1000;
-    for (const [u, sec] of [["year", 31536000], ["month", 2592000], ["week", 604800], ["day", 86400], ["hour", 3600], ["min", 60]]) {
-      const n = Math.floor(s / sec);
-      if (n >= 1) return `${n} ${u}${n > 1 ? "s" : ""} ago`;
-    }
-    return "just now";
-  });
+  // WordPress human_time_diff(): rounds to the nearest unit ("5.7 months" -> "6 months").
+  eleventyConfig.addFilter("timeAgo", (d) => humanTimeDiff(new Date(d), new Date()) + " ago");
 
   eleventyConfig.addFilter("articleClasses", (post) => {
     const d = post.data;
@@ -153,7 +182,8 @@ export default function (eleventyConfig) {
   // The two newest other articles that share a category.
   eleventyConfig.addFilter("related", (posts, current) => {
     const cats = new Set(current.data.categories || []);
-    return posts.filter((p) => p.url !== current.url && (p.data.categories || []).some((c) => cats.has(c))).slice(0, 2);
+    const list = posts.filter((p) => p.url !== current.url && (p.data.categories || []).some((c) => cats.has(c)));
+    return tieSort(list, legacyOrder.related[current.fileSlug]).slice(0, 2);
   });
   eleventyConfig.addFilter("prevNext", (posts, url) => {
     const i = posts.findIndex((p) => p.url === url);

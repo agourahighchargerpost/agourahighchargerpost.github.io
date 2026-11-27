@@ -39,6 +39,7 @@ Your browser remembers you after this. You only repeat steps 3–4 if you switch
    | **Headline** | The article title. It also becomes the web address (e.g. `/spring-musical-opens-friday/`). |
    | **Publish date** | Already set to right now. Change it only to backdate an article. |
    | **Writer** | Start typing their name. New writer? Click **Create new** right there, or add them under **Writers** first. |
+   | **Co-writers** | Optional. Anyone else who wrote the article. It's listed on their writer page too. |
    | **Sections** | One or more: News, Feature, Opinion, Sports, Arts and Entertainment. |
    | **Tags** | Optional keywords, such as the writer's first name or the topic. |
    | **Featured photo** | The main photo at the top of the article and in lists. Click to upload. Big phone photos are shrunk automatically. |
@@ -69,7 +70,7 @@ After saving, the editor shows a link to the article's page on the live site (it
 - **Fix or update an article:** Articles → click it → edit → Save.
 - **Delete an article:** open it and choose **Delete**. This removes it from the website. (To hide it temporarily instead, turn on **Draft**.)
 - **Add or edit a writer's profile** (photo, bio, email): **Writers**. Each writer has a page at `/author/their-name/` listing their articles.
-- **Choose the two stories beside the homepage banner:** **Site settings → Homepage**. The big rotating banner always shows the 4 newest articles automatically.
+- **Choose the two stories beside the homepage banner:** **Site settings → Homepage**. Leave it empty to show two random articles on every visit, which is what the old site did. The big rotating banner always shows the 4 newest articles automatically.
 
 The homepage, section pages, tag pages, monthly archives, "Recent Posts", search, and writer pages all update by themselves whenever you save.
 

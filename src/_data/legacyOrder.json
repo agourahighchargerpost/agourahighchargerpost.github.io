@@ -1,0 +1,285 @@
+{
+ "listings": {
+  "/category/arts-and-entertainment/": [
+   "may-music-performances",
+   "lost-girl-an-agoura-student-directed-play",
+   "agoura-high-musics-field-trip-to-the-los-angeles-philharmonic",
+   "la-opera-choir-performance",
+   "earth-sustainability-artist-showcase",
+   "the-magic-of-42nd-street",
+   "agoura-high-jazz-i-at-essentially-ellington-2025",
+   "the-battle-of-the-bands",
+   "the-new-wicked-movie",
+   "wind-honors-trip-to-nashville-tn",
+   "puffs-at-agoura-high-school",
+   "what-it-takes-to-be-agoura-high-schools-jazzband",
+   "world-of-dance"
+  ],
+  "/category/feature/": [
+   "college-applications-behind-the-black-box",
+   "the-book-that-made-its-mark",
+   "may-music-performances",
+   "jackie-and-shadows-story",
+   "ever-heard-of-linkin-park",
+   "ahs-mun-the-mckenna-model-united-nations-conference",
+   "is-chatgpt-now-a-talented-theoretical-physicist",
+   "phone-addiction-in-teenagers",
+   "forest-bathing-the-powers-of-the-woodlands",
+   "2026-2027-student-council-elections",
+   "every-vote-counts",
+   "tara-davis-invitational-2026",
+   "agoura-high-musics-field-trip-to-the-los-angeles-philharmonic",
+   "new-u-s-dietary-guidelines",
+   "how-to-be-a-good-teacher",
+   "statistics-the-individual-vs-the-society",
+   "whats-the-deal-with-senior-quotes",
+   "the-2026-winter-olympics",
+   "the-current-situation-in-iran",
+   "jazz-legend-gordon-goodwin-dies-at-age-70",
+   "lost-girl-an-agoura-student-directed-play",
+   "how-the-world-celebrates-december",
+   "agoura-high-model-uns-inaugural-bruin-model-un-conference",
+   "the-october-29-2025-psat",
+   "one-teachers-vision-the-man-who-revolutionized-the-robotics-program-at-agoura",
+   "daylight-savings",
+   "la-opera-choir-performance",
+   "mt-sac-invitational-2025",
+   "what-is-ai-friend-foe-tool-overlord",
+   "ib-field-trip-to-santa-cruz-island",
+   "halloween-a-history",
+   "the-new-math-curriculum",
+   "agoura-hills-wildlife-crossing",
+   "ai-usage-in-schools",
+   "the-new-off-and-away-phone-policy",
+   "earth-sustainability-artist-showcase",
+   "summer-vacation",
+   "earth-day",
+   "the-magic-of-42nd-street",
+   "chinese-lunar-new-year-celebration-performance",
+   "the-future-of-american-education",
+   "agoura-high-jazz-i-at-essentially-ellington-2025",
+   "agouras-first-model-un-convention",
+   "the-super-bowl-halftime-show",
+   "ai-is-going-to-take-over-the-world-and-not-in-the-way-you-think",
+   "agoura-high-school-peer-tutoring-program",
+   "wind-honors-trip-to-nashville-tn",
+   "holiday-2024-gift-guide",
+   "how-different-news-sources-discuss-the-same-topic",
+   "what-it-takes-to-be-agoura-high-schools-jazzband",
+   "world-of-dance",
+   "ap-and-ib-programs-at-agoura"
+  ],
+  "/category/opinion/": [
+   "how-to-be-a-good-teacher",
+   "lost-girl-an-agoura-student-directed-play",
+   "daylight-savings",
+   "the-october-29-2025-psat",
+   "the-new-off-and-away-phone-policy",
+   "ai-usage-in-schools",
+   "the-new-math-curriculum",
+   "the-super-bowl-halftime-show",
+   "ai-is-going-to-take-over-the-world-and-not-in-the-way-you-think",
+   "we-need-some-good-news",
+   "how-different-news-sources-discuss-the-same-topic",
+   "thoughts-on-agoura-highs-cafeteria-food",
+   "croutons-are-they-really-as-good-as-people-think-they-are"
+  ],
+  "/category/sports/": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026",
+   "girls-lax-season-so-far",
+   "the-2026-winter-olympics",
+   "mt-sac-invitational-2025",
+   "the-start-of-the-swim-season",
+   "varsity-girls-volleyball-season",
+   "start-of-the-frosh-soph-girls-water-polo-season-team",
+   "agoura-girls-tennis-season",
+   "flag-football"
+  ],
+  "/tag/agoura-high-school/": [
+   "the-book-that-made-its-mark",
+   "may-music-performances",
+   "ahs-mun-the-mckenna-model-united-nations-conference",
+   "tara-davis-invitational-2026",
+   "2026-2027-student-council-elections",
+   "forest-bathing-the-powers-of-the-woodlands",
+   "phone-addiction-in-teenagers",
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "girls-lax-season-so-far",
+   "how-to-be-a-good-teacher",
+   "whats-the-deal-with-senior-quotes",
+   "agoura-high-model-uns-inaugural-bruin-model-un-conference",
+   "the-october-29-2025-psat",
+   "la-opera-choir-performance",
+   "mt-sac-invitational-2025",
+   "the-new-math-curriculum",
+   "the-magic-of-42nd-street",
+   "agouras-first-model-un-convention",
+   "chinese-lunar-new-year-celebration-performance",
+   "agoura-high-jazz-i-at-essentially-ellington-2025",
+   "the-start-of-the-swim-season"
+  ],
+  "/tag/ai/": [
+   "is-chatgpt-now-a-talented-theoretical-physicist",
+   "ai-usage-in-schools",
+   "what-is-ai-friend-foe-tool-overlord",
+   "ai-is-going-to-take-over-the-world-and-not-in-the-way-you-think"
+  ],
+  "/tag/arts-and-entertainment/": [
+   "may-music-performances",
+   "lost-girl-an-agoura-student-directed-play",
+   "agoura-high-musics-field-trip-to-the-los-angeles-philharmonic",
+   "agoura-high-jazz-i-at-essentially-ellington-2025",
+   "what-it-takes-to-be-agoura-high-schools-jazzband"
+  ],
+  "/tag/feature/": [
+   "college-applications-behind-the-black-box",
+   "the-book-that-made-its-mark",
+   "may-music-performances",
+   "jackie-and-shadows-story",
+   "ever-heard-of-linkin-park",
+   "ahs-mun-the-mckenna-model-united-nations-conference",
+   "2026-2027-student-council-elections",
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "phone-addiction-in-teenagers",
+   "forest-bathing-the-powers-of-the-woodlands",
+   "every-vote-counts",
+   "is-chatgpt-now-a-talented-theoretical-physicist",
+   "tara-davis-invitational-2026",
+   "new-u-s-dietary-guidelines",
+   "agoura-high-musics-field-trip-to-the-los-angeles-philharmonic",
+   "lost-girl-an-agoura-student-directed-play",
+   "jazz-legend-gordon-goodwin-dies-at-age-70",
+   "the-2026-winter-olympics",
+   "whats-the-deal-with-senior-quotes",
+   "statistics-the-individual-vs-the-society",
+   "how-to-be-a-good-teacher",
+   "agoura-high-model-uns-inaugural-bruin-model-un-conference",
+   "the-october-29-2025-psat",
+   "one-teachers-vision-the-man-who-revolutionized-the-robotics-program-at-agoura",
+   "daylight-savings",
+   "how-the-world-celebrates-december",
+   "la-opera-choir-performance",
+   "halloween-a-history",
+   "the-new-off-and-away-phone-policy",
+   "ai-usage-in-schools",
+   "agoura-hills-wildlife-crossing",
+   "the-new-math-curriculum",
+   "ib-field-trip-to-santa-cruz-island",
+   "what-is-ai-friend-foe-tool-overlord",
+   "mt-sac-invitational-2025",
+   "the-magic-of-42nd-street",
+   "the-super-bowl-halftime-show",
+   "chinese-lunar-new-year-celebration-performance",
+   "the-future-of-american-education",
+   "agoura-high-jazz-i-at-essentially-ellington-2025",
+   "agouras-first-model-un-convention"
+  ],
+  "/tag/january-2025/": [
+   "the-january-2025-fires-devastation-in-socal",
+   "why-have-there-been-so-many-plane-crashes-in-america"
+  ],
+  "/tag/music/": [
+   "may-music-performances",
+   "ever-heard-of-linkin-park",
+   "jazz-legend-gordon-goodwin-dies-at-age-70",
+   "agoura-high-musics-field-trip-to-the-los-angeles-philharmonic",
+   "la-opera-choir-performance",
+   "the-magic-of-42nd-street",
+   "agoura-high-jazz-i-at-essentially-ellington-2025",
+   "the-battle-of-the-bands",
+   "wind-honors-trip-to-nashville-tn"
+  ],
+  "/tag/opinion/": [
+   "how-to-be-a-good-teacher",
+   "lost-girl-an-agoura-student-directed-play",
+   "daylight-savings",
+   "the-october-29-2025-psat",
+   "the-new-off-and-away-phone-policy",
+   "ai-usage-in-schools",
+   "the-new-math-curriculum",
+   "the-super-bowl-halftime-show",
+   "thoughts-on-agoura-highs-cafeteria-food",
+   "croutons-are-they-really-as-good-as-people-think-they-are"
+  ],
+  "/tag/sports/": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026",
+   "girls-lax-season-so-far",
+   "the-2026-winter-olympics",
+   "mt-sac-invitational-2025",
+   "the-super-bowl-halftime-show",
+   "the-start-of-the-swim-season",
+   "varsity-girls-volleyball-season",
+   "start-of-the-frosh-soph-girls-water-polo-season-team",
+   "agoura-girls-tennis-season",
+   "flag-football"
+  ],
+  "/tag/technology/": [
+   "ai-usage-in-schools",
+   "what-is-ai-friend-foe-tool-overlord"
+  ],
+  "/tag/tudor/": [
+   "the-book-that-made-its-mark",
+   "is-chatgpt-now-a-talented-theoretical-physicist",
+   "how-to-be-a-good-teacher",
+   "statistics-the-individual-vs-the-society",
+   "how-the-world-celebrates-december",
+   "what-is-ai-friend-foe-tool-overlord"
+  ],
+  "/author/tudor-m/": [
+   "the-book-that-made-its-mark",
+   "is-chatgpt-now-a-talented-theoretical-physicist",
+   "how-to-be-a-good-teacher",
+   "statistics-the-individual-vs-the-society",
+   "how-the-world-celebrates-december",
+   "what-is-ai-friend-foe-tool-overlord"
+  ]
+ },
+ "related": {
+  "agoura-girls-tennis-season": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026"
+  ],
+  "croutons-are-they-really-as-good-as-people-think-they-are": [
+   "how-to-be-a-good-teacher",
+   "lost-girl-an-agoura-student-directed-play"
+  ],
+  "flag-football": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026"
+  ],
+  "girls-lax-season-so-far": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026"
+  ],
+  "puffs-at-agoura-high-school": [
+   "may-music-performances",
+   "lost-girl-an-agoura-student-directed-play"
+  ],
+  "start-of-the-frosh-soph-girls-water-polo-season-team": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026"
+  ],
+  "the-battle-of-the-bands": [
+   "may-music-performances",
+   "lost-girl-an-agoura-student-directed-play"
+  ],
+  "the-new-wicked-movie": [
+   "may-music-performances",
+   "lost-girl-an-agoura-student-directed-play"
+  ],
+  "the-start-of-the-swim-season": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026"
+  ],
+  "thoughts-on-agoura-highs-cafeteria-food": [
+   "how-to-be-a-good-teacher",
+   "lost-girl-an-agoura-student-directed-play"
+  ],
+  "varsity-girls-volleyball-season": [
+   "making-waves-behind-the-scenes-of-the-agoura-girls-water-polo-programs-success",
+   "tara-davis-invitational-2026"
+  ]
+ }
+}

@@ -1,5 +1,5 @@
 {% include "partials/prelude.html" %}<head>
-<title>{% if fullTitle %}{{ fullTitle | escape }}{% elsif pageTitle %}{{ pageTitle | escape }} &#8211; {{ site.title }}{% elsif title %}{{ title | escape }} &#8211; {{ site.title }}{% elsif name %}{{ name | escape }} &#8211; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+<title>{% if fullTitle %}{{ fullTitle | escape }}{% elsif pageTitle %}{{ pageTitle | escape }} &#8211; {{ site.title }}{% elsif title %}{{ title | escape }} &#8211; {{ site.title }}{% elsif name %}{{ name | replace: "'", "’" | escape }} &#8211; {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
 {% include "partials/head.html" %}
 <link rel="stylesheet" id="editor-content-css" href="/assets/editor-content.css" media="all" />
 {%- if page.url %}

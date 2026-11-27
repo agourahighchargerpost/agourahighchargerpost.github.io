@@ -3,18 +3,37 @@
   "use strict";
 
   /* Relative dates ("3 months ago") were baked in when the page was saved; recompute them. */
+  /* Same rules as WordPress human_time_diff(): round to the nearest unit. */
   function ago(iso) {
-    var s = (Date.now() - new Date(iso).getTime()) / 1000;
-    var units = [["year", 31536000], ["month", 2592000], ["week", 604800], ["day", 86400], ["hour", 3600], ["min", 60]];
+    var s = Math.abs(Date.now() - new Date(iso).getTime()) / 1000;
+    var units = [[60, 1, "second", "seconds"], [3600, 60, "min", "mins"], [86400, 3600, "hour", "hours"],
+      [604800, 86400, "day", "days"], [2592000, 604800, "week", "weeks"], [31536000, 2592000, "month", "months"],
+      [Infinity, 31536000, "year", "years"]];
     for (var i = 0; i < units.length; i++) {
-      var n = Math.floor(s / units[i][1]);
-      if (n >= 1) return n + " " + units[i][0] + (n > 1 ? "s" : "") + " ago";
+      if (s < units[i][0]) {
+        var n = Math.max(1, Math.round(s / units[i][1]));
+        return n + " " + (n === 1 ? units[i][2] : units[i][3]) + " ago";
+      }
     }
-    return "just now";
   }
   document.querySelectorAll("time[datetime]").forEach(function (t) {
-    if (/\bago\b/.test(t.textContent)) t.textContent = ago(t.getAttribute("datetime"));
+    if (/\bago\b|just now/.test(t.textContent)) t.textContent = ago(t.getAttribute("datetime"));
   });
+
+  /* Homepage side stories: like WordPress, show two random articles on every visit
+     (only when no stories were picked under Site settings → Homepage). */
+  var pool = document.getElementById("side-pool");
+  if (pool && pool.content) {
+    var items = Array.prototype.slice.call(pool.content.children);
+    var wrap = pool.parentNode;
+    if (items.length >= 2) {
+      wrap.querySelectorAll(":scope > article").forEach(function (a) { a.remove(); });
+      for (var k = 0; k < 2; k++) {
+        var pick = items.splice(Math.floor(Math.random() * items.length), 1)[0];
+        wrap.insertBefore(document.importNode(pick, true), pool);
+      }
+    }
+  }
 
   /* Highlight the menu item for the section being viewed (WordPress did this on the server). */
   var path = location.pathname.replace(/page\/\d+\/$/, "");

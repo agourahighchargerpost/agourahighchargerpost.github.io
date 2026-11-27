@@ -80,6 +80,16 @@ collections:
         display_fields: [name]
         hint: Not in the list? Add them under Writers first, or click “Create new” here.
 
+      - name: coauthors
+        label: Co-writers
+        widget: relation
+        collection: writers
+        search_fields: [name]
+        display_fields: [name]
+        multiple: true
+        required: false
+        hint: Optional. Anyone else who wrote the article. It also appears on their writer page.
+
       - name: categories
         label: Sections
         widget: select
@@ -186,8 +196,9 @@ collections:
             widget: relation
             collection: articles
             multiple: true
+            required: false
             min: 0
             max: 2
             search_fields: [title]
             display_fields: [title]
-            hint: The two smaller stories to the right of the big rotating banner. The banner itself always shows the 4 newest articles.
+            hint: The two smaller stories to the right of the big rotating banner. Leave empty to show two random articles on every visit (what the old site did). The banner itself always shows the 4 newest articles.
