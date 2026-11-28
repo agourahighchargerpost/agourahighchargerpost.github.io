@@ -73,7 +73,7 @@ The site lives in the repository **[agourahighchargerpost/agourahighchargerpost.
 Already done: the code is pushed, and **Settings → Pages → Source** is set to **GitHub Actions**. To finish:
 
 1. **Test** everything at https://agourahighchargerpost.github.io/, including publishing a test article at `/admin/`.
-2. **Custom domain:** **Settings → Pages → Custom domain**: `www.agourahighchargerpost.com`. With GitHub Actions publishing, this setting is what counts (the `CNAME` file is just a reminder). From then on the github.io address redirects to the real domain.
+2. **Custom domain:** **Settings → Pages → Custom domain**: `www.agourahighchargerpost.com`. With GitHub Actions publishing, this setting is what counts (the `CNAME` file is just a reminder). From then on the github.io address redirects to the real domain. Also change `site_url` and `display_url` in `src/admin/config.yml` back to `https://www.agourahighchargerpost.com` (they point to github.io for now, so the editor's **View on Live Site** button opens the test site).
 3. **DNS** (in DreamHost's DNS panel). Replace the two `A` records that point to DreamHost (`69.163.140.209`) with:
    - `www`: `CNAME` to `agourahighchargerpost.github.io`
    - `agourahighchargerpost.com` (no `www`): `A` records `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`

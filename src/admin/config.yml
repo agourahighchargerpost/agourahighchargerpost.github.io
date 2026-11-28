@@ -19,8 +19,10 @@ backend:
     uploadMedia: "Upload “{{path}}”"
     deleteMedia: "Delete “{{path}}”"
 
-site_url: https://www.agourahighchargerpost.com
-display_url: https://www.agourahighchargerpost.com
+# Where "View on Live Site" goes. TEMPORARY: the github.io address until the
+# domain is switched over; then change both back to https://www.agourahighchargerpost.com
+site_url: https://agourahighchargerpost.github.io
+display_url: https://agourahighchargerpost.github.io
 logo:
   src: /wp-content/uploads/2024/11/cropped-image-2-192x192.png
 
