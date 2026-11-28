@@ -36,6 +36,9 @@ bodyClass: wp-singular post-template-default single single-post single-format-st
 
         <div itemprop='articleBody' class="entry-content">
 {{ content }}
+{%- unless author_box == false %}
+{% include "partials/author-box.liquid" %}
+{%- endunless %}
         </div><!-- .entry-content -->
 
         <footer class="entry-footer">

@@ -1,0 +1,42 @@
+{%- comment -%} "About the writer" box under an article, built from the writer profiles (src/writers/), so bio edits show up everywhere. {%- endcomment -%}
+{%- assign boxSlugs = author | split: "|" -%}
+{%- if coauthors %}{% assign boxSlugs = boxSlugs | concat: coauthors %}{% endif -%}
+<div class="pp-multiple-authors-boxes-wrapper pp-multiple-authors-wrapper pp-multiple-authors-layout-boxed multiple-authors-target-the-content box-instance-id-1">
+<span class="ppma-layout-prefix"></span>
+<div class="ppma-author-category-wrap">
+<span class="ppma-category-group ppma-category-group-1 category-index-4">
+<ul class="pp-multiple-authors-boxes-ul author-ul-4">
+{%- for s in boxSlugs %}
+{%- assign bw = s | writer %}
+<li class="pp-multiple-authors-boxes-li author_index_{{ forloop.index0 }} author_{{ s }}{% if bw.photo %} has-avatar{% endif %}">
+{%- if bw.photo %}
+<div class="pp-author-boxes-avatar">
+<div class="avatar-image">
+<img alt='' src='{{ bw.photo }}' class='multiple_authors_guest_author_avatar avatar' height='80' width='80' loading='lazy'/>
+</div>
+</div>
+{%- endif %}
+<div class="pp-author-boxes-avatar-details">
+<div class="pp-author-boxes-name multiple-authors-name"><a href="{{ bw.url }}" rel="author" title="{{ bw.name | escape }}" class="author url fn">{{ bw.name | escape }}</a></div>
+{%- if bw.bio %}
+<p class="pp-author-boxes-description multiple-authors-description author-description-{{ forloop.index0 }}">
+{{ bw.bio | newline_to_br }}
+</p>
+{%- endif %}
+<span class="pp-author-boxes-meta multiple-authors-links">
+<a href="{{ bw.url }}" title="View all posts"><span>View all posts</span></a>
+</span>
+{%- if bw.email %}
+<a class="ppma-author-user_email-profile-data ppma-author-field-meta ppma-author-field-type-email" aria-label="Email" href="mailto:{{ bw.email }}" target="_self"><span class="dashicons dashicons-email-alt"></span> </a>
+{%- endif %}
+{%- if bw.website %}
+<a class="ppma-author-user_url-profile-data ppma-author-field-meta ppma-author-field-type-url" aria-label="Website" href="{{ bw.website }}" target="_self"><span class="dashicons dashicons-admin-links"></span> </a>
+{%- endif %}
+</div>
+</li>
+{%- endfor %}
+</ul>
+</span>
+</div>
+<span class="ppma-layout-suffix"></span>
+</div>

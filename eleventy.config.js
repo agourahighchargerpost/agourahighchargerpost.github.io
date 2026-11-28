@@ -147,7 +147,8 @@ export default function (eleventyConfig) {
   // ------------------------------------------------------------------ filters
   eleventyConfig.addFilter("writer", (slug) => {
     const w = writers.get(slug);
-    return w ? { slug, name: w.data.name, url: `/author/${slug}/` } : { slug, name: slug, url: `/author/${slug}/` };
+    const d = w ? w.data : {};
+    return { slug, name: d.name || slug, url: `/author/${slug}/`, photo: d.photo, bio: d.bio, email: d.email, website: d.website };
   });
   // Articles by a writer, including ones where they are listed as a co-writer.
   eleventyConfig.addFilter("postsBy", (posts, slug) => tieSort(
